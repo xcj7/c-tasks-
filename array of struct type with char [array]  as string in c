@@ -1,0 +1,68 @@
+#include <stdio.h>
+
+struct student{
+ char Name[40];
+ int ID;
+ int Batch_No;
+int Age;
+ char Blood_Group[50];
+ int Year;
+ int Semester;
+};
+
+
+
+int main()
+{
+    char str[50];
+    struct student a[2]; 
+    int i,j;
+    for(i=0;i<(sizeof(a)/sizeof a[0]);i++)
+    {fflush(stdout);
+    printf("Enter name: ");
+    fgets(a[i].Name, sizeof(a[i].Name), stdin);             
+    //displayString(a.Name);  
+fflush(stdout);
+ printf("Enter Blood_Group: ");
+    fgets(a[i].Blood_Group, sizeof(a[i].Blood_Group), stdin);             
+ 
+
+
+  printf("ID : ");
+scanf("%d",&a[i].ID);
+
+
+printf("Batch_No : ");
+scanf("%d",&a[i].Batch_No);
+
+
+printf("Age : ");
+scanf("%d",&a[i].Age);
+
+
+
+
+printf("Year : ");
+scanf("%d",&a[i].Year);
+
+printf("Semester : ");
+scanf("%d",&a[i].Semester);
+}
+
+for(i=0;i<(sizeof(a)/sizeof a[0]);i++)
+{
+    
+
+printf("\n name: ");
+puts(a[i].Name);
+printf("ID : %d\n",a[i].ID);
+printf(" Batch_No : %d\n",a[i].Batch_No);
+printf(" Age : %d\n",a[i].Age);
+printf(" Blood_Group: ");
+puts(a[i].Blood_Group);  
+printf(" Year : %d\n",a[i].Year);
+printf(" Semester : %d\n",a[i].Semester);
+
+}
+    return 0;
+}
