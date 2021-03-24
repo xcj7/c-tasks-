@@ -1,0 +1,178 @@
+
+
+//..............................................write.................................................
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct student{
+ char Name[40];
+ int ID;
+ int Batch_No;
+int Age;
+ char Blood_Group[50];
+ int Year;
+ int Semester;
+};
+
+
+
+
+int main()
+{
+  int num,u=5,v=0;
+  char h[40];
+  FILE *fptr;
+
+  // use appropriate location if you are using MacOS or Linux
+  fptr = fopen("C:\\program.txt","w");
+
+  if(fptr == NULL)
+  {
+      printf("Error!");   
+      exit(1);             
+  }
+
+
+/*
+ printf("Enter string : ");
+  fgets(h,40,stdin);
+  
+  printf("Enter num: ");
+  scanf("%d",&num);
+  
+ 
+
+  fprintf(fptr,"this is  %d",num);
+  //fprintf(fptr,"  %c",*h);
+  fputs(h,fptr);
+//   for(u=0;u<5;u++)
+//   {if(h[u]!='\0')
+//   {
+//   fprintf(fptr,"%c",h[u]);
+//   }
+//   }
+
+
+*/
+
+
+
+struct student a; 
+    printf("Enter name: ");
+    fgets(a.Name, sizeof(a.Name), stdin);             
+    //displayString(a.Name);  
+
+ printf("Enter Blood_Group: ");
+    fgets(a.Blood_Group, sizeof(a.Blood_Group), stdin);             
+ 
+
+
+  printf("ID : ");
+scanf("%d",&a.ID);
+
+
+printf("Batch_No : ");
+scanf("%d",&a.Batch_No);
+
+
+printf("Age : ");
+scanf("%d",&a.Age);
+
+
+
+
+printf("Year : ");
+scanf("%d",&a.Year);
+
+printf("Semester : ");
+scanf("%d",&a.Semester);
+
+
+fputs(a.Name,fptr);
+fprintf(fptr," %d",a.ID);
+fprintf(fptr," %d",a.Batch_No);
+fprintf(fptr," %d ",a.Age);
+
+fputs(a.Blood_Group,fptr);  
+fprintf(fptr," %d\n",a.Year);
+fprintf(fptr," %d",a.Semester);
+
+
+
+  fclose(fptr);
+
+  return 0;
+}
+
+
+//.......................................................read ....................................
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct student{
+ char Name[40];
+ int ID;
+ int Batch_No;
+int Age;
+ char Blood_Group[50];
+ int Year;
+ int Semester;
+};
+
+
+
+
+
+int main()
+{
+  int num;
+ struct student a; 
+  FILE *fptr;
+
+  if ((fptr = fopen("C:\\program.txt","r")) == NULL){
+      printf("Error! opening file");
+
+      // Program exits if the file pointer returns NULL.
+      exit(1);
+  }
+
+
+fgets(a.Name, sizeof(a.Name), (FILE*)fptr);  
+
+ fscanf(fptr,"%d", &a.ID);
+ fscanf(fptr,"%d", &a.Batch_No);
+ fscanf(fptr,"%d", &a.Age);
+ fgets(a.Blood_Group, sizeof(a.Blood_Group), (FILE*)fptr); 
+ fscanf(fptr,"%d", &a.Year);
+ fscanf(fptr,"%d", &a.Semester);
+
+  //fscanf(fptr,"%d", &num);
+
+  //printf("Value of n=%d", num);
+  
+  printf("\n name: ");
+puts(a.Name);
+printf("ID : %d\n",a.ID);
+printf(" Batch_No : %d\n",a.Batch_No);
+printf(" Age : %d\n",a.Age);
+printf(" Blood_Group: ");
+puts(a.Blood_Group);  
+printf(" Year : %d\n",a.Year);
+printf(" Semester : %d\n",a.Semester);
+
+
+  fclose(fptr); 
+  
+  return 0;
+}
+
+
+
+//fgets(buff, 255, (FILE*)fp);
+
+
+
