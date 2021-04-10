@@ -1,0 +1,232 @@
+#include <iostream>
+using namespace std;
+
+class node
+{
+public:
+    int data;
+    node *next;
+};
+
+node *head=NULL;
+int Count();
+//void Remove(int key);
+
+
+void insertAtFirst(int key)
+{
+    node *newNode = new node;
+    newNode -> data = key;
+    newNode -> next = head;
+    head = newNode;
+}
+
+void insertAt(int pos, int key)
+{
+    if(Count() <= pos)
+    {
+        cout<<" Invalid Position. ";
+    }
+    else
+    {
+        node *emon = head;
+        int index = 0;
+        for(index=0; index<pos; index++)
+        {
+            emon = emon->next;
+        }
+        node *newNode = new node;
+        newNode -> data = key;
+        newNode -> next = emon-> next;
+        emon -> next = newNode;
+    }
+}
+
+void insertAtLast(int key)
+{
+    if(head==NULL)
+    {
+        insertAtFirst(key);
+    }
+    else
+    {
+        node *emon = head;
+        while(emon->next != NULL)
+        {
+            emon = emon -> next;
+        }
+        node *newNode = new node;
+        newNode -> data = key;
+        newNode -> next = NULL;
+        emon -> next = newNode;
+    }
+}
+
+void EraseFirst()
+{
+    if(head == NULL)
+    {
+        cout<<"List is Empty"<<endl;
+    }
+    else
+    {
+        node *temp = new node;
+        temp = head;
+        head = head->next;
+        delete temp;
+    }
+}
+
+void EraseLast()
+{
+    if(head == NULL)
+    {
+        cout<<"List is Empty"<<endl;
+    }
+    else
+    {
+        node *emon = head;
+        node *prevNode = new node;
+        if(head->next == NULL)
+        {
+            
+            head = NULL;
+        }
+        else
+        {
+            while(emon->next != NULL)
+            {
+                prevNode = emon;
+                emon = emon -> next;
+            }
+            prevNode->next = NULL;
+            delete emon;
+        }
+    }
+}
+
+void EraseAt(int pos)
+{
+    if(Count()<=pos)
+    {
+        cout<<"Invalid Position"<<endl;
+    }
+    else
+    {
+        if(pos == 0)
+        {
+            EraseFirst();
+        }
+        else if(pos == (Count()-1))
+        {
+            EraseLast();
+        }
+        else
+        {
+            node *emon = head;
+           
+            for(int i = 0; i<pos; i++)
+            {
+                emon = emon->next;
+            }
+            node *temp = new node;
+            temp = emon;
+
+         //emon->data=emon->next->data;
+        
+         //emon = emon->next;
+
+
+        
+    
+    while(emon->next!=NULL)
+    {     //delete temp;
+        //cout<<emon->data<<" ";
+        emon->data=emon->next->data;
+        emon = emon->next;
+        
+    }
+    EraseLast();
+         //delete temp;
+        //   head = emon;
+         }
+    }
+}
+
+void Remove(int key)
+{
+    node *emon = head;
+    node *prevNode;
+    while(emon != NULL)
+    {
+        if(emon->data==key)
+        {
+            if(emon==head)
+            {
+                EraseFirst();
+                head=emon;
+                continue;
+            }
+            else if(emon->next==NULL)
+            {
+                prevNode->next=NULL;
+                delete emon;
+                break;
+            }
+            else
+            {
+                prevNode->next = emon->next;
+                node *temp=emon;
+                emon=emon->next;
+                delete temp;
+                continue;
+            }
+        }
+        prevNode=emon;
+        emon=emon->next;
+    }
+}
+
+int Count()
+{
+    int counter=0;
+    node *emon = head;
+    while(emon != NULL)
+    {
+        counter++;
+        emon = emon->next;
+    }
+    return counter;
+}
+
+void printList()
+{
+    node *emon=head;
+    cout<<"Data: ";
+    while(emon!=NULL)
+    {
+        cout<<emon->data<<" ";
+        emon=emon->next;
+    }
+}
+
+
+int main()
+{
+    insertAtFirst(60);
+    insertAtFirst(50);
+    insertAtFirst(40);
+    insertAtFirst(20);
+    insertAtFirst(15);
+    insertAtFirst(5);
+    insertAtFirst(4);
+    EraseFirst();
+    EraseLast();
+    Remove(50);
+     EraseAt(2);
+
+    
+    printList();
+    return 0;
+}
+
