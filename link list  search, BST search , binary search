@@ -1,0 +1,290 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+vector<int>v,w,y;
+
+
+
+struct node
+{
+    int data;
+    node *next;
+};
+
+
+
+class linked_list
+{
+private:
+    node *head,*tail;
+public:
+    linked_list()
+    {
+        head = NULL;
+        tail = NULL;
+    }
+
+    void add_node(int n)
+    {
+        node *tmp = new node;
+        tmp->data = n;
+        tmp->next = NULL;
+
+        if(head == NULL)
+        {
+            head = tmp;
+            tail = tmp;
+        }
+        else
+        {
+            tail->next = tmp;
+            tail = tail->next;
+        }
+    }
+    
+    
+    
+    
+    bool search(int x)
+{
+	node* current = head; // Initialize current
+	while (current != NULL)
+	{
+		if (current->data == x)
+			return true;
+		current = current->next;
+	}
+	return false;
+}
+    
+    
+      
+    void display_link_list()
+{
+	node* current = head; // Initialize current
+	while (current != NULL)
+	{
+		cout<< current->data <<" " ;
+			
+		current = current->next;
+	}
+
+}
+    
+    
+};
+
+
+class BST {
+    
+private:
+
+    struct node {
+        int data;
+        node* left;
+        node* right;
+    };
+
+    node* root;
+
+
+    node* insert(int x, node* t)
+    {
+        if(t == NULL)
+        {
+            t = new node;
+            t->data = x;
+            t->left = t->right = NULL;
+        }
+        else if(x < t->data)
+            t->left = insert(x, t->left);
+        else if(x > t->data)
+            t->right = insert(x, t->right);
+        return t;
+    }
+
+
+    
+    vector<int> bubblesort(vector<int> t ,int n) 
+  { 
+      
+    int i, j; 
+    for (i = 0; i < n-1; i++)     
+    {  
+    // Last i elements are already in place 
+    for (j = 0; j < n-i-1; j++) 
+    {
+        if (t[j] > t[j+1] ) 
+        {
+            swap(t[j] , t[j+1] ); 
+        }
+    } 
+  }
+  
+
+  
+  return t;
+ 
+  
+  }
+    
+
+
+
+    void inorder(node* t) {
+        if(t == NULL)
+            return;
+        inorder(t->left);
+        cout << t->data << " ";
+        inorder(t->right);
+    }
+
+
+
+    node* find(node* t, int x) {
+        if(t == NULL)
+            return NULL;
+        else if(x < t->data)
+            return find(t->left, x);
+        else if(x > t->data)
+            return find(t->right, x);
+        else{
+            cout<< " value found !!! "<<endl;
+             return t;
+        }
+           
+    }
+    
+    
+    
+    int binary_search(vector<int>tamim_values,int x,int low,int high)
+    {
+ while (low <= high) {
+    int mid = low + (high - low) / 2;
+
+    if (tamim_values[mid] == x)
+    {
+        cout<< " value found !!! "<<endl;
+      return mid;
+    }
+    if (tamim_values[mid] < x)
+      low = mid + 1;
+
+    else
+      high = mid - 1;
+  }
+
+  return -1;
+}
+
+
+
+
+public:
+ 
+
+    BST() {
+        root = NULL;
+      
+    }
+   node* s;
+  
+
+   void insert(int x) {
+        root = insert(x, root);
+        s=root;
+        
+        
+    }
+    
+ 
+    vector<int> b_sort(vector<int> tamim_values,int n)
+    {
+       w =  bubblesort(tamim_values,n);
+        
+        return w;
+    }
+   
+
+ 
+ void display_b(vector<int>w) {
+        for(int i=0;i<w.size();i++)
+        {
+            cout<<w[i]<<" ";
+        }
+    }
+
+    void display() {
+        inorder(root);
+        cout << endl;
+    }
+
+    void binary_s(vector<int>v,int x) {
+        binary_search(v,x,0,v.size()-1);
+    }
+    
+ void search(int x) {
+        root = find(root, x);
+    }
+};
+
+
+
+
+int main()
+{
+    BST t;
+    linked_list a;
+    int number,end_point_of_taking_input=10;
+    int search_value=2;
+    
+    
+    cout<<" please input "<<end_point_of_taking_input<< " numbers : "<<endl;
+    for(int i=0;i<end_point_of_taking_input;i++)
+    {
+     cin>>number;
+     v.push_back(number) ;
+     t.insert(number);
+     a.add_node(number);
+    }
+    
+    
+    
+    
+     cout<<" values in the linked_list :"<<endl;       
+ a.display_link_list();
+ 
+ 
+  y= t.b_sort(v,end_point_of_taking_input);
+ cout<<endl<<" bubblesort reasult :"<<endl;       
+ t.display_b(y);
+ 
+ 
+ cout<<endl;
+ cout<<" inorder traversal  reasult  of the binary search tree  :"<<endl;   
+  t.display();
+  
+  
+  //int search_value=2;
+
+   cout<<" Searching  -> "<< search_value<<" in BST :"<<endl;   
+  t.search(search_value);
+
+  cout<<" binary searching   value  of ->  "<< search_value<<"  reasult :"<<endl;   
+  t.binary_s(y,search_value);
+  
+  
+
+	
+    // a.add_node(1);
+    // a.add_node(2);
+    // a.add_node(3);
+    // a.add_node(4);
+    cout<<" finding value in the link list : "<<endl;
+    a.search(search_value)? cout<<"Yes, value found @@@ " : cout<<"No , value not found @@@";
+	
+	
+	return 0;
+  
+}
